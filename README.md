@@ -10,10 +10,10 @@
 
 <p align="center">
   <a href="https://github.com/Zythenth/aurora-discord-bot">
-    <img width="49%" src="https://github-readme-stats.vercel.app/api/pin/?username=Zythenth&repo=aurora-discord-bot&theme=tokyonight&hide_border=true" alt="Aurora Discord Bot">
+    <img width="49%" src="https://github-readme-stats.shion.dev/api/pin/?username=Zythenth&repo=aurora-discord-bot&show_icons=true&theme=tokyonight&hide_border=true" alt="Aurora Discord Bot">
   </a>
   <a href="https://github.com/Zythenth/Chronos-RPG-Engine-v4.0">
-    <img width="49%" src="https://github-readme-stats.vercel.app/api/pin/?username=Zythenth&repo=Chronos-RPG-Engine-v4.0&theme=tokyonight&hide_border=true" alt="Chronos RPG Engine">
+    <img width="49%" src="https://github-readme-stats.shion.dev/api/pin/?username=Zythenth&repo=Chronos-RPG-Engine-v4.0&show_icons=true&theme=tokyonight&hide_border=true" alt="Chronos RPG Engine">
   </a>
 </p>
 
@@ -56,6 +56,6 @@ Além dessas ferramentas, trabalho com Discord.js, Prisma, APIs REST, testes aut
 ## 📊 Um pouco do meu GitHub
 
 <p align="center">
-  <img width="49%" src="https://github-readme-stats.vercel.app/api?username=Zythenth&show_icons=true&theme=tokyonight&hide_border=true&include_all_commits=true" alt="Estatísticas do GitHub de Zythenth">
-  <img width="37%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Zythenth&layout=compact&theme=tokyonight&hide_border=true" alt="Linguagens mais usadas por Zythenth">
+  <img width="49%" src="https://github-readme-stats.shion.dev/api?username=Zythenth&show_icons=true&theme=tokyonight&hide_border=true&include_all_commits=true" alt="Estatísticas do GitHub de Zythenth">
+  <img width="37%" src="https://github-readme-stats.shion.dev/api/top-langs/?username=Zythenth&layout=compact&theme=tokyonight&hide_border=true" alt="Linguagens mais usadas por Zythenth">
 </p>
