@@ -6,7 +6,7 @@
 
 ---
 
-## 🚀 Projetos principais
+## Projetos principais
 
 <p align="center">
   <a href="https://github.com/Zythenth/aurora-discord-bot">
@@ -19,7 +19,7 @@
 
 ---
 
-## 🌙 Sobre mim
+## Sobre mim
 
 Oi, eu sou o Warley. Por aqui, costumo usar **Zythenth**.
 
@@ -31,11 +31,11 @@ Quando não estou tentando fazer algo novo, provavelmente estou refazendo alguma
 
 ---
 
-## 🛠️ No que tenho trabalhado
+## No que tenho trabalhado
 
-**[Aurora](https://github.com/Zythenth/aurora-discord-bot)** nasceu da vontade de criar interações mais divertidas em servidores do Discord. Hoje ele reúne roleplay, afinidade, privacidade, moderação e integração com GIFs em um projeto feito com TypeScript, Discord.js, Prisma e SQLite.
+**[Aurora](https://github.com/Zythenth/aurora-discord-bot)** nasceu da minha vontade de criar algo especial e de um impulso que veio do amor da minha vida. O que começou como uma ideia simples foi crescendo até se tornar um bot com roleplay, afinidade, privacidade, moderação e integração com GIFs. Ele é feito com TypeScript, Discord.js, Prisma e SQLite.
 
-**[Chronos](https://github.com/Zythenth/Chronos-RPG-Engine-v4.0)** é meu espaço para experimentar RPG narrativo, regras determinísticas e IA. A ideia é deixar o Python cuidar do mundo e das consequências enquanto o Gemini ajuda a contar a história.
+**[Chronos](https://github.com/Zythenth/Chronos-RPG-Engine-v4.0)** nasceu porque eu queria um RPG diferente, com mais liberdade para explorar uma história sem deixar as regras de lado. Nele, o Python cuida do mundo e das consequências enquanto o Gemini ajuda a contar a história.
 
 **[Anti-AI Craft](https://github.com/Zythenth/anti-ai-craft)** reúne algumas das regras que tento seguir quando trabalho com IA. O foco é evitar código genérico, decisões sem evidência e mudanças feitas só porque parecem convenientes.
 
@@ -43,7 +43,7 @@ Também estou aberto a trabalhos pequenos e bem definidos envolvendo bots, autom
 
 ---
 
-## 💻 Ferramentas que uso
+## Ferramentas que uso
 
 <p align="center">
   <img src="https://skillicons.dev/icons?i=python,ts,nodejs,flask,sqlite,docker,git,github&theme=dark" alt="Python, TypeScript, Node.js, Flask, SQLite, Docker, Git e GitHub">
@@ -53,9 +53,19 @@ Além dessas ferramentas, trabalho com Discord.js, Prisma, APIs REST, testes aut
 
 ---
 
-## 📊 Um pouco do meu GitHub
+## Um pouco do meu GitHub
 
 <p align="center">
   <img width="49%" src="https://github-readme-stats.shion.dev/api?username=Zythenth&show_icons=true&theme=tokyonight&hide_border=true&include_all_commits=true" alt="Estatísticas do GitHub de Zythenth">
   <img width="37%" src="https://github-readme-stats.shion.dev/api/top-langs/?username=Zythenth&layout=compact&theme=tokyonight&hide_border=true" alt="Linguagens mais usadas por Zythenth">
+</p>
+
+---
+
+## Discord
+
+<p align="center">
+  <a href="https://discord.com/users/936660871562805330">
+    <img src="https://img.shields.io/badge/Discord-zy-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Perfil de zy no Discord">
+  </a>
 </p>
