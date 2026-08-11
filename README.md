@@ -1,8 +1,22 @@
-<h3 align="center">Warley • Zythenth</h3>
+<div align="center">
+
+![Warley | Zythenth](https://capsule-render.vercel.app/api?type=waving&height=220&color=0:0f172a,45:1d4ed8,100:22c55e&text=Warley%20%7C%20Zythenth&fontAlign=50&fontAlignY=38&fontColor=ffffff&fontSize=42&desc=Bots%2C%20sistemas%20de%20RPG%20%2B%20ferramentas%20para%20devs&descAlign=50&descAlignY=58&animation=fadeIn)
+
+</div>
 
 <p align="center">
   <img width="900" src="./assets/lilith.gif" alt="Lilith em uma cena azul e estrelada">
 </p>
+
+<div align="center">
+
+[![Texto animado sobre o trabalho de Zythenth](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=22&duration=2600&pause=900&color=22C55E&center=true&vCenter=true&width=760&lines=Python%2C+TypeScript%2C+Node.js+e+Flask;Bots+para+Discord+e+automa%C3%A7%C3%B5es;Motores+de+RPG+e+sistemas+cheios+de+regras;Ferramentas+com+IA%2C+l%C3%B3gica+e+valida%C3%A7%C3%A3o)](https://git.io/typing-svg)
+
+[![Visualizações do perfil](https://komarev.com/ghpvc/?username=Zythenth&style=for-the-badge&color=22c55e)](https://github.com/Zythenth)
+[![Seguidores no GitHub](https://img.shields.io/github/followers/Zythenth?style=for-the-badge&logo=github&color=1d4ed8)](https://github.com/Zythenth?tab=followers)
+[![GitHub desde 2025](https://img.shields.io/badge/GitHub-desde%202025-0f172a?style=for-the-badge&logo=github)](https://github.com/Zythenth)
+
+</div>
 
 ---
 
@@ -55,6 +69,12 @@ Além dessas ferramentas, trabalho com Discord.js, Prisma, APIs REST, testes aut
 
 ## Um pouco do meu GitHub
 
+<div align="center">
+
+![Gráfico de contribuições de Zythenth](https://github-readme-activity-graph.vercel.app/graph?username=Zythenth&theme=github-compact&hide_border=true&area=true&custom_title=Gr%C3%A1fico%20de%20contribui%C3%A7%C3%B5es)
+
+</div>
+
 <p align="center">
   <img width="49%" src="https://github-readme-stats.shion.dev/api?username=Zythenth&show_icons=true&theme=tokyonight&hide_border=true&include_all_commits=true" alt="Estatísticas do GitHub de Zythenth">
   <img width="37%" src="https://github-readme-stats.shion.dev/api/top-langs/?username=Zythenth&layout=compact&theme=tokyonight&hide_border=true" alt="Linguagens mais usadas por Zythenth">
@@ -69,3 +89,9 @@ Além dessas ferramentas, trabalho com Discord.js, Prisma, APIs REST, testes aut
     <img src="https://img.shields.io/badge/Discord-zy-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Perfil de zy no Discord">
   </a>
 </p>
+
+<div align="center">
+
+![Rodapé ondulado](https://capsule-render.vercel.app/api?type=waving&height=120&section=footer&color=0:22c55e,55:1d4ed8,100:0f172a)
+
+</div>
