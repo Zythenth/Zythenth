@@ -1,6 +1,6 @@
 <div align="center">
 
-![Zythenth](https://capsule-render.vercel.app/api?type=soft&height=220&color=0:05070d,50:b91c1c,100:05070d&text=ZYTHENTH&fontAlign=50&fontAlignY=42&fontColor=f8fafc&fontSize=54&stroke=ef4444&strokeWidth=1&desc=Warley%20%7C%20bots%2C%20RPGs%20e%20automa%C3%A7%C3%B5es&descAlign=50&descAlignY=67&descSize=18&animation=scaleIn)
+![Zythenth](https://capsule-render.vercel.app/api?type=waving&height=220&color=0:0b0b0f,45:4c1118,70:7a1f2b,100:0b0b0f&text=ZYTHENTH&fontAlign=50&fontAlignY=38&fontColor=f5f5f4&fontSize=50&desc=Warley%20%7C%20bots%2C%20RPGs%20e%20automa%C3%A7%C3%B5es&descAlign=50&descAlignY=58&descSize=18&animation=fadeIn)
 
 </div>
 
@@ -10,11 +10,11 @@
 
 <div align="center">
 
-[![Texto animado sobre o trabalho de Zythenth](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=20&duration=2300&pause=700&color=F87171&background=05070D&center=true&vCenter=true&width=760&lines=%3E+criando+bots+que+lembram;%3E+construindo+mundos+que+reagem;%3E+transformando+regras+em+sistemas;%3E+refinando+at%C3%A9+ficar+do+jeito+certo)](https://git.io/typing-svg)
+[![Texto animado sobre o trabalho de Zythenth](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=20&duration=2500&pause=850&color=B45A64&background=0B0B0F&center=true&vCenter=true&width=760&lines=%3E+criando+bots+que+lembram;%3E+construindo+mundos+que+reagem;%3E+transformando+regras+em+sistemas;%3E+refinando+at%C3%A9+ficar+do+jeito+certo)](https://git.io/typing-svg)
 
-[![Visualizações do perfil](https://komarev.com/ghpvc/?username=Zythenth&label=VISITAS&style=flat-square&color=dc2626)](https://github.com/Zythenth)
-[![Seguidores no GitHub](https://img.shields.io/github/followers/Zythenth?label=SEGUIDORES&style=flat-square&logo=github&labelColor=05070d&color=f8fafc)](https://github.com/Zythenth?tab=followers)
-[![GitHub desde 2025](https://img.shields.io/badge/CONTA-2025-b91c1c?style=flat-square&logo=github&labelColor=05070d)](https://github.com/Zythenth)
+[![Visualizações do perfil](https://komarev.com/ghpvc/?username=Zythenth&label=VISITAS&style=flat-square&color=7a1f2b)](https://github.com/Zythenth)
+[![Seguidores no GitHub](https://img.shields.io/github/followers/Zythenth?label=SEGUIDORES&style=flat-square&logo=github&labelColor=0b0b0f&color=e7e5e4)](https://github.com/Zythenth?tab=followers)
+[![GitHub desde 2025](https://img.shields.io/badge/CONTA-2025-4c1118?style=flat-square&logo=github&labelColor=0b0b0f)](https://github.com/Zythenth)
 
 </div>
 
@@ -24,10 +24,10 @@
 
 <p align="center">
   <a href="https://github.com/Zythenth/aurora-discord-bot">
-    <img width="49%" src="https://github-readme-stats.shion.dev/api/pin/?username=Zythenth&repo=aurora-discord-bot&show_icons=true&hide_border=true&bg_color=05070d&title_color=f8fafc&text_color=cbd5e1&icon_color=ef4444" alt="Aurora Discord Bot">
+    <img width="49%" src="https://github-readme-stats.shion.dev/api/pin/?username=Zythenth&repo=aurora-discord-bot&show_icons=true&hide_border=true&bg_color=0b0b0f&title_color=f5f5f4&text_color=d6d3d1&icon_color=b45a64" alt="Aurora Discord Bot">
   </a>
   <a href="https://github.com/Zythenth/Chronos-RPG-Engine-v4.0">
-    <img width="49%" src="https://github-readme-stats.shion.dev/api/pin/?username=Zythenth&repo=Chronos-RPG-Engine-v4.0&show_icons=true&hide_border=true&bg_color=05070d&title_color=f8fafc&text_color=cbd5e1&icon_color=ef4444" alt="Chronos RPG Engine">
+    <img width="49%" src="https://github-readme-stats.shion.dev/api/pin/?username=Zythenth&repo=Chronos-RPG-Engine-v4.0&show_icons=true&hide_border=true&bg_color=0b0b0f&title_color=f5f5f4&text_color=d6d3d1&icon_color=b45a64" alt="Chronos RPG Engine">
   </a>
 </p>
 
@@ -71,13 +71,13 @@ Além dessas ferramentas, trabalho com Discord.js, Prisma, APIs REST, testes aut
 
 <div align="center">
 
-![Gráfico de contribuições de Zythenth](https://github-readme-activity-graph.vercel.app/graph?username=Zythenth&bg_color=05070d&color=cbd5e1&title_color=ef4444&line=ef4444&point=f8fafc&area=true&area_color=7f1d1d&hide_border=true&radius=6&custom_title=Sinal%20de%20atividade)
+![Gráfico de contribuições de Zythenth](https://github-readme-activity-graph.vercel.app/graph?username=Zythenth&bg_color=0b0b0f&color=d6d3d1&title_color=b45a64&line=9f3f49&point=f5f5f4&area=true&area_color=4c1118&hide_border=true&radius=6&custom_title=Sinal%20de%20atividade)
 
 </div>
 
 <p align="center">
-  <img width="49%" src="https://github-readme-stats.shion.dev/api?username=Zythenth&show_icons=true&hide_border=true&include_all_commits=true&bg_color=05070d&title_color=f8fafc&text_color=cbd5e1&icon_color=ef4444" alt="Estatísticas do GitHub de Zythenth">
-  <img width="37%" src="https://github-readme-stats.shion.dev/api/top-langs/?username=Zythenth&layout=compact&hide_border=true&bg_color=05070d&title_color=f8fafc&text_color=cbd5e1" alt="Linguagens mais usadas por Zythenth">
+  <img width="49%" src="https://github-readme-stats.shion.dev/api?username=Zythenth&show_icons=true&hide_border=true&include_all_commits=true&bg_color=0b0b0f&title_color=f5f5f4&text_color=d6d3d1&icon_color=b45a64" alt="Estatísticas do GitHub de Zythenth">
+  <img width="37%" src="https://github-readme-stats.shion.dev/api/top-langs/?username=Zythenth&layout=compact&hide_border=true&bg_color=0b0b0f&title_color=f5f5f4&text_color=d6d3d1" alt="Linguagens mais usadas por Zythenth">
 </p>
 
 ---
@@ -92,6 +92,6 @@ Além dessas ferramentas, trabalho com Discord.js, Prisma, APIs REST, testes aut
 
 <div align="center">
 
-![Rodapé em preto, branco e vermelho](https://capsule-render.vercel.app/api?type=shark&height=110&section=footer&color=0:05070d,50:b91c1c,100:05070d&reversal=true)
+![Rodapé em preto, branco e vinho](https://capsule-render.vercel.app/api?type=waving&height=120&section=footer&color=0:4c1118,55:7a1f2b,100:0b0b0f)
 
 </div>
