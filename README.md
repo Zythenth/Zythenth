@@ -38,16 +38,16 @@ Quando não estou tentando fazer algo novo, provavelmente estou refazendo alguma
 
 <p align="center">
   <a href="https://github.com/Zythenth/black-gravity">
-    <img width="49%" src="https://github-readme-stats.shion.dev/api/pin/?username=Zythenth&repo=black-gravity&show_icons=true&hide_border=true&bg_color=262947&title_color=f9f9fd&text_color=c3d0ea&icon_color=8a9fc6" alt="Black Gravity">
+    <img width="49%" src="./assets/projects/black-gravity.svg" alt="Black Gravity">
   </a>
   <a href="https://github.com/Zythenth/aurora-discord-bot">
-    <img width="49%" src="https://github-readme-stats.shion.dev/api/pin/?username=Zythenth&repo=aurora-discord-bot&show_icons=true&hide_border=true&bg_color=262947&title_color=f9f9fd&text_color=c3d0ea&icon_color=8a9fc6" alt="Aurora Discord Bot">
+    <img width="49%" src="./assets/projects/aurora-discord-bot.svg" alt="Aurora">
   </a>
   <a href="https://github.com/Zythenth/Chronos-RPG-Engine-v4.0">
-    <img width="49%" src="https://github-readme-stats.shion.dev/api/pin/?username=Zythenth&repo=Chronos-RPG-Engine-v4.0&show_icons=true&hide_border=true&bg_color=262947&title_color=f9f9fd&text_color=c3d0ea&icon_color=8a9fc6" alt="Chronos RPG Engine">
+    <img width="49%" src="./assets/projects/chronos.svg" alt="Chronos RPG Engine">
   </a>
   <a href="https://github.com/Zythenth/anti-ai-craft">
-    <img width="49%" src="https://github-readme-stats.shion.dev/api/pin/?username=Zythenth&repo=anti-ai-craft&show_icons=true&hide_border=true&bg_color=262947&title_color=f9f9fd&text_color=c3d0ea&icon_color=8a9fc6" alt="Anti-AI Craft">
+    <img width="49%" src="./assets/projects/anti-ai-craft.svg" alt="Anti-AI Craft">
   </a>
 </p>
 
