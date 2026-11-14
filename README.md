@@ -78,8 +78,8 @@ Quando não estou tentando fazer algo novo, provavelmente estou refazendo alguma
 <img width="100%" src="./assets/sections/github.svg" alt="Um pouco do meu GitHub">
 
 <p align="center">
-  <img height="180" src="https://github-readme-stats.shion.dev/api?username=Zythenth&show_icons=true&hide_border=true&include_all_commits=true&bg_color=08090d&title_color=f9f9fd&text_color=c3d0ea&icon_color=8a9fc6" alt="Estatísticas do GitHub de Zythenth">
-  <img height="180" src="https://github-readme-stats.shion.dev/api/top-langs/?username=Zythenth&layout=compact&langs_count=6&hide_border=true&bg_color=08090d&title_color=f9f9fd&text_color=c3d0ea" alt="Linguagens mais usadas por Zythenth">
+  <img height="180" src="https://raw.githubusercontent.com/Zythenth/Zythenth/output/estatisticas.svg" alt="Estatísticas do GitHub de Zythenth">
+  <img height="180" src="https://raw.githubusercontent.com/Zythenth/Zythenth/output/linguagens.svg" alt="Linguagens mais usadas por Zythenth">
 </p>
 
 <p align="center">

@@ -25,7 +25,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Publica a imagem na branch output
+      - name: Gera os cartões de estatísticas e de linguagens
+        run: python .github/scripts/estatisticas.py "${{ github.repository_owner }}" dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publica as imagens na branch output
         uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
