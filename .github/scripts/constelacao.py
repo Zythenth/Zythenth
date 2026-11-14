@@ -1,7 +1,7 @@
 """Gera a constelação de contribuições do perfil em SVG.
 
 Cada dia do último ano aparece como um commit comum até a bolinha passar por
-cima, em zigue-zague como a cobrinha; aí ele vira um astro que cresce com as
+cima, num trajeto livre como o da cobrinha; aí ele vira um astro que cresce com as
 contribuições (cometa, planeta, sol, estrela gigante ou buraco negro) e mostra
 o número do dia.
 
@@ -10,6 +10,7 @@ Uso: GITHUB_TOKEN=... python constelacao.py <usuario> <arquivo-de-saida.svg>
 import json
 import os
 import random
+import zlib
 import sys
 import urllib.request
 from datetime import date
@@ -69,66 +70,150 @@ def raios(x, y, n, longo, curto, base, cor, giro):
             f'from="0 {x} {y}" to="360 {x} {y}" dur="{giro}s" repeatCount="indefinite"/></g>')
 
 
-def astro(tipo, x, y):
-    """Desenha o astro do dia; devolve (svg, cor do número, raio do brilho)."""
-    if tipo == "cometa":
-        return (f'<path d="M {x - 4},{y - 7} L {x - 17},{y - 14} L {x - 7},{y - 2} Z" fill="{PERI}" opacity="0.7"/>'
-                f'<circle cx="{x}" cy="{y}" r="9" fill="{DIM}"/>', WHITE, 12)
-    if tipo == "planeta":
-        return (f'<ellipse cx="{x}" cy="{y}" rx="16" ry="4.5" fill="none" stroke="{PALE}" stroke-width="1.8" '
-                f'transform="rotate(-20 {x} {y})"/>'
-                f'<circle cx="{x}" cy="{y}" r="10" fill="{PERI}"/>', INK, 14)
-    if tipo == "sol":
-        return raios(x, y, 8, 13, 10.5, 2, PALE, 14) + f'<circle cx="{x}" cy="{y}" r="8.5" fill="{PALE}"/>', INK, 14
-    if tipo == "gigante":
-        return (f'<circle cx="{x}" cy="{y}" r="17" fill="url(#halo)"/>'
-                + raios(x, y, 12, 17.5, 13.5, 2.4, WHITE, 20)
-                + f'<circle cx="{x}" cy="{y}" r="11" fill="{WHITE}"/>'
-                f'<circle cx="{x}" cy="{y}" r="14" fill="none" stroke="{PERI}" stroke-width="1"/>', INK, 18)
-    disco = (f'fill="none" stroke="url(#disco)" stroke-width="3" stroke-dasharray="9 3 3 3" '
-             f'transform="rotate(-15 {x} {y})"')
+# Cada astro tem variantes inspiradas em corpos reais; o dia escolhe uma de forma fixa pela data.
+VARIANTES = {
+    "cometa": ["cometa"],
+    "planeta": ["terra", "marte", "saturno", "netuno", "jupiter"],
+    "sol": ["sol"],
+    "gigante": ["betelgeuse", "rigel", "aldebaran"],
+    "buraco": ["buraco"],
+}
+HALOS = {  # cor do brilho de cada astro
+    "cometa": "#7fd8f0", "sol": "#ffc94a", "betelgeuse": "#ff5a2e", "rigel": "#7aa6ff",
+    "aldebaran": "#ff9a3c", "buraco": "#ff8a3d",
+}
+NUCLEOS = {  # (centro, borda) dos núcleos luminosos
+    "cometa": ("#f2fcff", "#7fd8f0"), "sol": ("#fff6c2", "#ffbf2e"), "betelgeuse": ("#ffd9b0", "#ff5a2e"),
+    "rigel": ("#ffffff", "#7aa6ff"), "aldebaran": ("#ffe6b8", "#ff9a3c"),
+}
+
+
+def defs_astros():
+    """Gradientes e recortes usados pelos astros coloridos."""
+    partes = [f'<radialGradient id="halo-{k}"><stop offset="0" stop-color="{c}" stop-opacity="0.75"/>'
+              f'<stop offset="1" stop-color="{c}" stop-opacity="0"/></radialGradient>' for k, c in HALOS.items()]
+    partes += [f'<radialGradient id="nucleo-{k}" cx="0.4" cy="0.38" r="0.65"><stop offset="0" stop-color="{a}"/>'
+               f'<stop offset="1" stop-color="{b}"/></radialGradient>' for k, (a, b) in NUCLEOS.items()]
+    partes += [
+        '<linearGradient id="cauda" x1="1" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#9fe6ff" stop-opacity="0.9"/>'
+        '<stop offset="1" stop-color="#9fe6ff" stop-opacity="0"/></linearGradient>',
+        '<linearGradient id="disco" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ff6a2a"/>'
+        '<stop offset="0.5" stop-color="#fff0c8"/><stop offset="1" stop-color="#ff6a2a"/></linearGradient>',
+        '<radialGradient id="sombra" cx="0.35" cy="0.3" r="0.75"><stop offset="0.55" stop-color="#000" stop-opacity="0"/>'
+        '<stop offset="1" stop-color="#000" stop-opacity="0.45"/></radialGradient>',
+        '<clipPath id="disco-planeta"><circle r="10"/></clipPath>',
+    ]
+    return "".join(partes)
+
+
+def planeta(var):
+    """Planetas desenhados na origem, com recorte circular e sombra."""
+    if var == "terra":
+        miolo = ('<circle r="10" fill="#2f74c8"/>'
+                 '<path d="M -9,-3 C -6,-8 -1,-7 0,-3 C 1,1 -4,2 -3,6 C -6,7 -9,3 -9,-3 Z" fill="#4fae62"/>'
+                 '<path d="M 3,-9 C 7,-8 9,-4 7,-1 C 5,1 3,-2 2,-5 Z M 4,4 C 7,3 9,6 6,9 C 4,9 3,6 4,4 Z" fill="#5fbf6e"/>'
+                 '<path d="M -8,-6 C -3,-9 3,-9 7,-7" fill="none" stroke="#fff" stroke-width="1.4" opacity="0.7"/>', "#ffffff")
+    elif var == "marte":
+        miolo = ('<circle r="10" fill="#c8552e"/>'
+                 '<path d="M -10,2 C -5,0 -2,5 3,3 C 6,2 8,5 10,4 L 10,10 L -10,10 Z" fill="#9a3a1c"/>'
+                 '<circle cx="-3" cy="-3" r="2.2" fill="#a8411f"/><ellipse cx="0" cy="-9.4" rx="4.5" ry="1.8" fill="#f4ece6"/>', "#ffffff")
+    elif var == "saturno":
+        miolo = ('<circle r="10" fill="#e6c983"/><rect x="-10" y="-4" width="20" height="2.5" fill="#cfa862"/>'
+                 '<rect x="-10" y="2" width="20" height="2" fill="#d6b46f"/>', "#3a2a0c")
+    elif var == "netuno":
+        miolo = ('<circle r="10" fill="#3b63dc"/><rect x="-10" y="-2" width="20" height="3" fill="#5f86f0"/>'
+                 '<ellipse cx="4" cy="4" rx="3" ry="1.6" fill="#24409e"/>', "#ffffff")
+    else:  # júpiter
+        miolo = ('<circle r="10" fill="#e2b48a"/><rect x="-10" y="-6" width="20" height="2.4" fill="#b9784c"/>'
+                 '<rect x="-10" y="0" width="20" height="3" fill="#c98d5f"/><rect x="-10" y="5.5" width="20" height="1.8" fill="#b9784c"/>'
+                 '<ellipse cx="4" cy="3.6" rx="2.6" ry="1.5" fill="#a5532e"/>', "#2e1a0c")
+    corpo, ink = miolo
+    anel = ''
+    if var == "saturno":
+        anel = '<ellipse rx="17" ry="4.8" fill="none" stroke="#e8d39c" stroke-width="2.2" transform="rotate(-20)"/>'
+    return (anel + f'<g clip-path="url(#disco-planeta)">{corpo}<circle r="10" fill="url(#sombra)"/></g>'), ink
+
+
+def astro(var):
+    """Desenha o astro do dia na origem; devolve (svg, cor do número, raio do brilho)."""
+    if var == "cometa":
+        return ('<path d="M -3,-8 L -19,-17 L -8,-2 Z" fill="url(#cauda)"/>'
+                '<circle r="12" fill="url(#halo-cometa)"/><circle r="9" fill="url(#nucleo-cometa)"/>', "#0b2a3a", 12)
+    if var in ("terra", "marte", "saturno", "netuno", "jupiter"):
+        corpo, ink = planeta(var)
+        return corpo, ink, 14
+    if var == "sol":
+        return ('<circle r="15" fill="url(#halo-sol)"/>' + raios(0, 0, 8, 13, 10.5, 2, "#ffb52e", 14)
+                + '<circle r="8.5" fill="url(#nucleo-sol)"/>', "#4a2600", 14)
+    if var in ("betelgeuse", "rigel", "aldebaran"):
+        cor = HALOS[var]
+        return (f'<circle r="19" fill="url(#halo-{var})"/>' + raios(0, 0, 12, 17.5, 13.5, 2.4, cor, 20)
+                + f'<circle r="11" fill="url(#nucleo-{var})"/>'
+                f'<circle r="14" fill="none" stroke="{cor}" stroke-width="1" opacity="0.7"/>', "#1a0f08", 18)
+    disco = ('fill="none" stroke="url(#disco)" stroke-width="3" stroke-dasharray="9 3 3 3" transform="rotate(-15)"')
     giro = '<animate attributeName="stroke-dashoffset" from="0" to="-72" dur="2.6s" repeatCount="indefinite"/>'
-    return (f'<circle cx="{x}" cy="{y}" r="17" fill="url(#halo)" opacity="0.5"/>'
-            f'<ellipse cx="{x}" cy="{y}" rx="19" ry="6" {disco}>{giro}</ellipse>'
-            f'<circle cx="{x}" cy="{y}" r="10.5" fill="#05060f" stroke="{WHITE}" stroke-width="1.4"/>', WHITE, 19)
+    return ('<circle r="18" fill="url(#halo-buraco)" opacity="0.6"/>'
+            f'<ellipse rx="19" ry="6" {disco}>{giro}</ellipse>'
+            '<circle r="10.5" fill="#05060f" stroke="#ffd9a0" stroke-width="1.4"/>', WHITE, 19)
 
 
 W_PITCH = 22      # distância entre os dias
 LEFT = 72         # início da grade, depois dos rótulos dos dias
 TOP = 120         # linha do domingo
 K = 0.78          # escala dos astros dentro da grade
-PASSO = 0.06      # segundos que a bolinha leva de um dia para o próximo
+PASSO_MAX = 0.06  # segundos que a bolinha leva, no máximo, de uma casa para a vizinha
+VARREDURA_MAX = 32  # duração máxima do passeio, em segundos
 PAUSA = 4         # segundos com tudo revelado antes de recomeçar
 NORMAL = {"cometa": "#2e3754", "planeta": "#4a5a86", "sol": "#7187bb", "gigante": "#a9bde6", "buraco": "#d6e0f5"}
 
 
-def caminho(weeks, rng):
-    """Trajeto orgânico como o da cobrinha: anda uma casa por vez nas quatro direções,
-    sempre rumo ao dia com contribuições ainda não revelado mais próximo, em escadinha.
+ORDEM = ["cometa", "planeta", "sol", "gigante", "buraco"]
 
-    Devolve a lista de casas visitadas e, para cada dia com contribuições, o passo em que
-    a bolinha passou por cima dele pela primeira vez.
+
+def caminho(weeks, rng):
+    """Trajeto livre como o da cobrinha: revela primeiro os dias mais fracos e depois os
+    mais fortes, sempre indo ao mais próximo da vez e contornando os dias de nível acima,
+    que ainda não podem ser revelados.
+
+    Devolve as casas visitadas e, para cada dia com contribuições, o passo em que ele foi revelado.
     """
-    alvos = {(c, d["weekday"]) for c, w in enumerate(weeks) for d in w["contributionDays"] if d["contributionCount"]}
+    nivel = {(c, d["weekday"]): ORDEM.index(faixa(d["contributionCount"])[1])
+             for c, w in enumerate(weeks) for d in w["contributionDays"] if d["contributionCount"]}
+    colunas = len(weeks)
     pos, passos, revela = (-1, 3), [(-1, 3)], {}
-    while alvos:
-        alvo = min(alvos, key=lambda q: (abs(q[0] - pos[0]) + abs(q[1] - pos[1]), rng.random()))
-        while pos != alvo:
-            opcoes = []
-            if alvo[0] != pos[0]:
-                opcoes.append((pos[0] + (1 if alvo[0] > pos[0] else -1), pos[1]))
-            if alvo[1] != pos[1]:
-                opcoes.append((pos[0], pos[1] + (1 if alvo[1] > pos[1] else -1)))
-            pos = rng.choice(opcoes)
-            passos.append(pos)
-            if pos in alvos:
-                alvos.discard(pos)
-                revela[pos] = len(passos) - 1
-    fim = (pos[0], 3)
-    while pos != fim:  # volta para o meio e sai pela direita
-        pos = (pos[0], pos[1] + (1 if fim[1] > pos[1] else -1))
-        passos.append(pos)
-    passos += [(pos[0] + i, pos[1]) for i in range(1, len(weeks) - pos[0] + 2)]
+
+    def rota(teto):
+        """Busca em largura até o dia mais próximo do nível `teto`, com desempates aleatórios."""
+        antes, fila = {pos: None}, [pos]
+        for atual in fila:
+            if nivel.get(atual) == teto:
+                trecho = []
+                while atual != pos:
+                    trecho.append(atual)
+                    atual = antes[atual]
+                return trecho[::-1]
+            vizinhos = [(atual[0] + dc, atual[1] + dr) for dc, dr in ((1, 0), (-1, 0), (0, 1), (0, -1))]
+            rng.shuffle(vizinhos)
+            for q in vizinhos:
+                if q not in antes and -1 <= q[0] <= colunas and -1 <= q[1] <= 7 and nivel.get(q, -1) <= teto:
+                    antes[q] = atual
+                    fila.append(q)
+        return None
+
+    for teto in range(len(ORDEM)):
+        while teto in nivel.values():
+            trecho = rota(teto)
+            if trecho is None:  # cercado por dias mais fortes: atravessa por cima
+                guardado, nivel = nivel, {q: teto for q in nivel}
+                trecho = rota(teto)
+                nivel = guardado
+            for q in trecho:
+                passos.append(q)
+                if q in nivel:
+                    del nivel[q]
+                    revela[q] = len(passos) - 1
+            pos = passos[-1]
+    passos += [(c, pos[1]) for c in range(pos[0] + 1, colunas + 2)]  # sai pela direita
     return passos, revela
 
 
@@ -138,6 +223,7 @@ def svg(cal, login):
     H = TOP + 6 * W_PITCH + 46
     rng = random.Random(login)
     passos, revela = caminho(weeks, rng)
+    PASSO = min(PASSO_MAX, VARREDURA_MAX / len(passos))
     varredura = len(passos) * PASSO
     DUR = varredura + PAUSA + 1.2
     r1, r2 = (varredura + PAUSA) / DUR, (varredura + PAUSA + 0.8) / DUR
@@ -172,7 +258,8 @@ def svg(cal, login):
             some = f'values="1;1;0;0;1;1" keyTimes="0;{f:.4f};{a:.4f};{r1:.4f};{r2:.4f};1"'
             surge = f'values="0;0;1;1;0;0" keyTimes="0;{f:.4f};{a:.4f};{r1:.4f};{r2:.4f};1"'
             brilho = f'values="0;0;1;0;0" keyTimes="0;{f:.4f};{a:.4f};{min(f + 1.2 / DUR, r1):.4f};1"'
-            desenho, ink, raio = astro(tipo, 0, 0)
+            opcoes = VARIANTES[tipo]
+            desenho, ink, raio = astro(opcoes[zlib.crc32(day["date"].encode()) % len(opcoes)])
             dias.append(
                 f'<rect x="{x - 6}" y="{y - 6}" width="12" height="12" rx="3" fill="{NORMAL[tipo]}">'
                 f'<animate attributeName="opacity" {some} dur="{DUR:.2f}s" repeatCount="indefinite"/></rect>'
@@ -204,7 +291,7 @@ def svg(cal, login):
   <title>Constelação de contribuições de {login}</title>
   <defs>
     <clipPath id="card"><rect width="{W}" height="{H}" rx="18"/></clipPath>
-    <linearGradient id="disco" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{PERI}"/><stop offset="0.5" stop-color="{WHITE}"/><stop offset="1" stop-color="{PERI}"/></linearGradient>
+    {defs_astros()}
     <radialGradient id="halo"><stop offset="0" stop-color="{WHITE}" stop-opacity="0.7"/><stop offset="1" stop-color="{WHITE}" stop-opacity="0"/></radialGradient>
   </defs>
   <g clip-path="url(#card)">
