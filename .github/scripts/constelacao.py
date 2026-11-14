@@ -1,7 +1,9 @@
 """Gera a constelação de contribuições do perfil em SVG.
 
-Cada dia do último ano vira um astro que cresce com o número de contribuições
-(cometa, planeta, sol, estrela gigante e buraco negro), com o número escrito dentro, e um cometa atravessa o céu acendendo os dias por onde passa.
+Cada dia do último ano aparece como um commit comum até a bolinha passar por
+cima, em zigue-zague como a cobrinha; aí ele vira um astro que cresce com as
+contribuições (cometa, planeta, sol, estrela gigante ou buraco negro) e mostra
+o número do dia.
 
 Uso: GITHUB_TOKEN=... python constelacao.py <usuario> <arquivo-de-saida.svg>
 """
@@ -31,10 +33,6 @@ MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "
 SANS = "Segoe UI, Helvetica, Arial, sans-serif"
 SERIF = "Georgia, 'Times New Roman', serif"
 
-W = 1000
-PITCH = 32
-LEFT = 84
-DUR = 18  # segundos de uma volta completa do cometa
 
 
 def calendario(login, token):
@@ -48,7 +46,7 @@ def calendario(login, token):
     return data["data"]["user"]["contributionsCollection"]["contributionCalendar"]
 
 
-FAIXAS = [  # (mínimo de contribuições no dia, astro, nome na legenda)
+FAIXAS = [  # (mínimo de contribuições no dia, astro, nome)
     (20, "buraco", "buraco negro"),
     (10, "gigante", "estrela gigante"),
     (6, "sol", "sol"),
@@ -95,98 +93,105 @@ def astro(tipo, x, y):
             f'<circle cx="{x}" cy="{y}" r="10.5" fill="#05060f" stroke="{WHITE}" stroke-width="1.4"/>', WHITE, 19)
 
 
-def bloco(weeks, top, fase0, rng):
-    """Desenha um semestre: rótulos de mês e dias, estrelas e o brilho quando o cometa passa."""
-    x0, x1 = LEFT - 40, LEFT + 26 * PITCH + 40
-    out = []
-    meses = [date.fromisoformat(w["contributionDays"][-1]["date"]).month for w in weeks]
+W_PITCH = 22      # distância entre os dias
+LEFT = 72         # início da grade, depois dos rótulos dos dias
+TOP = 120         # linha do domingo
+K = 0.78          # escala dos astros dentro da grade
+PASSO = 0.06      # segundos que a bolinha leva de um dia para o próximo
+PAUSA = 4         # segundos com tudo revelado antes de recomeçar
+NORMAL = {"cometa": "#2e3754", "planeta": "#4a5a86", "sol": "#7187bb", "gigante": "#a9bde6", "buraco": "#d6e0f5"}
+
+
+def caminho(weeks):
+    """Ordem em zigue-zague: desce numa semana, sobe na seguinte, como a cobrinha."""
+    pontos = []
     for c, week in enumerate(weeks):
-        x = LEFT + c * PITCH
-        novo = c == 0 or meses[c] != meses[c - 1]
-        espremido = c == 0 and len(meses) > 2 and meses[1] != meses[0]
-        if novo and not espremido:
-            out.append(f'<text x="{x - 10}" y="{top - 22}" fill="{PERI}" font-family="{SANS}" font-size="13">'
-                       f'{MESES[meses[c] - 1]}</text>')
-        f = fase0 + 0.46 * (x - x0) / (x1 - x0)
-        for day in week["contributionDays"]:
-            y = top + day["weekday"] * PITCH
-            n = day["contributionCount"]
-            if n == 0:
-                out.append(f'<circle cx="{x}" cy="{y}" r="2" fill="{DIM}" opacity="0.55"/>')
-                continue
-            desenho, ink, brilho = astro(faixa(n)[1], x, y)
-            a, b, e = max(f - 0.006, 0.001), f + 0.004, min(f + 0.07, 0.999)
-            out.append(
-                f'<circle cx="{x}" cy="{y}" r="{brilho + 3}" fill="none" stroke="{WHITE}" stroke-width="1.6" opacity="0">'
-                f'<animate attributeName="opacity" values="0;0;0.95;0;0" keyTimes="0;{a:.4f};{b:.4f};{e:.4f};1" '
-                f'dur="{DUR}s" repeatCount="indefinite"/></circle>'
-                + desenho +
-                f'<text x="{x}" y="{y + 4.2:.1f}" text-anchor="middle" fill="{ink}" font-family="{SANS}" '
-                f'font-size="{11.5 if n < 100 else 9}" font-weight="700">{n}</text>')
-    for i, nome in ((1, "seg"), (3, "qua"), (5, "sex")):
-        out.append(f'<text x="{LEFT - 30}" y="{top + i * PITCH + 4.5}" text-anchor="end" fill="{PERI}" '
-                   f'font-family="{SANS}" font-size="12">{nome}</text>')
-    return "".join(out)
-
-
-def cometa(top, fase0):
-    """Cometa que cruza o semestre na altura da quarta-feira e some no fim."""
-    y = top + 3 * PITCH
-    x0, x1 = LEFT - 40, LEFT + 26 * PITCH + 40
-    if fase0 == 0:
-        mov, kt = f"0 0;{x1 - x0} 0;{x1 - x0} 0", "0;0.46;1"
-        op, okt = "1;1;0;0", "0;0.45;0.47;1"
-    else:
-        mov, kt = f"0 0;0 0;{x1 - x0} 0;{x1 - x0} 0", "0;0.5;0.96;1"
-        op, okt = "0;0;1;1;0;0", "0;0.49;0.5;0.95;0.97;1"
-    return (f'<g opacity="0"><animate attributeName="opacity" values="{op}" keyTimes="{okt}" dur="{DUR}s" '
-            f'repeatCount="indefinite"/><g><animateTransform attributeName="transform" type="translate" '
-            f'values="{mov}" keyTimes="{kt}" dur="{DUR}s" repeatCount="indefinite"/>'
-            f'<path d="M {x0},{y - 3.5} L {x0 - 90},{y - 1} L {x0 - 90},{y + 1} L {x0},{y + 3.5} Z" fill="url(#cauda)"/>'
-            f'<circle cx="{x0}" cy="{y}" r="11" fill="url(#halo)"/>'
-            f'<circle cx="{x0}" cy="{y}" r="4.5" fill="{WHITE}"/></g></g>')
+        dias = sorted(week["contributionDays"], key=lambda d: d["weekday"], reverse=c % 2 == 1)
+        pontos += [(c, d) for d in dias]
+    return pontos
 
 
 def svg(cal, login):
     weeks = cal["weeks"][-53:]
-    metade = len(weeks) - 27
-    top1, top2 = 132, 132 + 7 * PITCH + 92
-    H = top2 + 6 * PITCH + 92
+    W = LEFT + (len(weeks) - 1) * W_PITCH + 56
+    H = TOP + 6 * W_PITCH + 46
+    pontos = caminho(weeks)
+    varredura = len(pontos) * PASSO
+    DUR = varredura + PAUSA + 1.2
+    r1, r2 = (varredura + PAUSA) / DUR, (varredura + PAUSA + 0.8) / DUR
     rng = random.Random(login)
+
     fundo = "".join(
         f'<circle cx="{rng.uniform(10, W - 10):.0f}" cy="{rng.uniform(10, H - 10):.0f}" '
         f'r="{rng.choice([0.6, 0.9, 1.2])}" fill="{WHITE}" opacity="{rng.uniform(0.12, 0.35):.2f}"/>'
-        for _ in range(70))
+        for _ in range(60))
+
+    rotulos = []
+    meses = [date.fromisoformat(w["contributionDays"][-1]["date"]).month for w in weeks]
+    for c in range(len(weeks)):
+        if (c == 0 and meses[1] == meses[0]) or (c > 0 and meses[c] != meses[c - 1]):
+            rotulos.append(f'<text x="{LEFT + c * W_PITCH - 8}" y="{TOP - 24}" fill="{PERI}" '
+                           f'font-family="{SANS}" font-size="13">{MESES[meses[c] - 1]}</text>')
+    for i, nome in ((1, "seg"), (3, "qua"), (5, "sex")):
+        rotulos.append(f'<text x="{LEFT - 22}" y="{TOP + i * W_PITCH + 4.5}" text-anchor="end" fill="{PERI}" '
+                       f'font-family="{SANS}" font-size="12">{nome}</text>')
+
+    dias, trilha = [], []
+    for i, (c, day) in enumerate(pontos):
+        x, y = LEFT + c * W_PITCH, TOP + day["weekday"] * W_PITCH
+        trilha.append(f"{x} {y}")
+        n = day["contributionCount"]
+        if n == 0:
+            dias.append(f'<circle cx="{x}" cy="{y}" r="1.7" fill="{DIM}" opacity="0.5"/>')
+            continue
+        tipo = faixa(n)[1]
+        f = i * PASSO / DUR
+        a = f + 0.002
+        some = f'values="1;1;0;0;1;1" keyTimes="0;{f:.4f};{a:.4f};{r1:.4f};{r2:.4f};1"'
+        surge = f'values="0;0;1;1;0;0" keyTimes="0;{f:.4f};{a:.4f};{r1:.4f};{r2:.4f};1"'
+        brilho = f'values="0;0;1;0;0" keyTimes="0;{f:.4f};{a:.4f};{min(f + 1.2 / DUR, r1):.4f};1"'
+        desenho, ink, raio = astro(tipo, 0, 0)
+        dias.append(
+            f'<rect x="{x - 6}" y="{y - 6}" width="12" height="12" rx="3" fill="{NORMAL[tipo]}">'
+            f'<animate attributeName="opacity" {some} dur="{DUR:.2f}s" repeatCount="indefinite"/></rect>'
+            f'<circle cx="{x}" cy="{y}" r="{(raio + 3) * K:.1f}" fill="none" stroke="{WHITE}" stroke-width="1.4" opacity="0">'
+            f'<animate attributeName="opacity" {brilho} dur="{DUR:.2f}s" repeatCount="indefinite"/></circle>'
+            f'<g opacity="0"><animate attributeName="opacity" {surge} dur="{DUR:.2f}s" repeatCount="indefinite"/>'
+            f'<g transform="translate({x} {y}) scale({K})">{desenho}'
+            f'<text x="0" y="5" text-anchor="middle" fill="{ink}" font-family="{SANS}" '
+            f'font-size="{14.5 if n < 100 else 11}" font-weight="700">{n}</text></g></g>')
+
+    # bolinha que percorre a grade, com um rastro de pontos que vai sumindo
+    ultimo = trilha[-1]
+    valores = ";".join(trilha + [ultimo])
+    tempos = ";".join(f"{i * PASSO / DUR:.5f}" for i in range(len(trilha))) + ";1"
+    vis = f'values="0;1;1;0;0" keyTimes="0;0.003;{varredura / DUR:.4f};{(varredura + 0.6) / DUR:.4f};1"'
+    bolinha = []
+    for k, (raio, op) in enumerate(((5, 1), (3.6, 0.7), (2.8, 0.5), (2.1, 0.32), (1.5, 0.18))):
+        corpo = (f'<circle r="12" fill="url(#halo)"/><circle r="{raio}" fill="{WHITE}"/>' if k == 0
+                 else f'<circle r="{raio}" fill="{PALE}" opacity="{op}"/>')
+        atraso = f'begin="{k * PASSO * 1.1:.2f}s"'
+        bolinha.insert(0,
+            f'<g opacity="0"><animate attributeName="opacity" {vis} dur="{DUR:.2f}s" {atraso} repeatCount="indefinite"/>'
+            f'<g transform="translate({trilha[0]})"><animateTransform attributeName="transform" type="translate" '
+            f'values="{valores}" keyTimes="{tempos}" dur="{DUR:.2f}s" {atraso} repeatCount="indefinite"/>{corpo}</g></g>')
+
     total = cal["totalContributions"]
     total_txt = f"{total:,}".replace(",", ".")
-    legenda_y = H - 34
-    legenda, lx = [], LEFT - 16
-    for minimo, tipo, nome in reversed(FAIXAS):
-        prox = next((m for m, _, _ in reversed(FAIXAS) if m > minimo), None)
-        faixa_txt = f"{minimo}+" if prox is None else (f"{minimo}" if prox - 1 == minimo else f"{minimo}–{prox - 1}")
-        desenho, _, _ = astro(tipo, lx, legenda_y)
-        legenda.append(desenho + f'<text x="{lx + 22}" y="{legenda_y + 4.5}" fill="{PALE}" font-family="{SANS}" '
-                       f'font-size="13">{nome} <tspan fill="{PERI}">{faixa_txt}</tspan></text>')
-        lx += 46 + 7.4 * len(f"{nome} {faixa_txt}")
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Constelação de contribuições de {login}: {total_txt} contribuições no último ano">
   <title>Constelação de contribuições de {login}</title>
   <defs>
     <clipPath id="card"><rect width="{W}" height="{H}" rx="18"/></clipPath>
-    <linearGradient id="cauda" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="{PALE}" stop-opacity="0.9"/><stop offset="1" stop-color="{PERI}" stop-opacity="0"/></linearGradient>
     <linearGradient id="disco" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{PERI}"/><stop offset="0.5" stop-color="{WHITE}"/><stop offset="1" stop-color="{PERI}"/></linearGradient>
     <radialGradient id="halo"><stop offset="0" stop-color="{WHITE}" stop-opacity="0.7"/><stop offset="1" stop-color="{WHITE}" stop-opacity="0"/></radialGradient>
   </defs>
   <g clip-path="url(#card)">
     <rect width="{W}" height="{H}" fill="{BASE}"/>
-    <rect y="{H - 64}" width="{W}" height="64" fill="{SHADE}"/>
     {fundo}
-    <text x="{LEFT - 30}" y="62" fill="{WHITE}" font-family="{SERIF}" font-size="30">{total_txt} contribuições no último ano</text>
-    <rect x="{LEFT - 30}" y="76" width="{W - 2 * (LEFT - 30)}" height="1.2" fill="{LINE}"/>
-    {bloco(weeks[:27], top1, 0, rng)}
-    {bloco(weeks[27:27 + metade], top2, 0.5, rng)}
-    {cometa(top1, 0)}
-    {cometa(top2, 0.5)}
-    {"".join(legenda)}
+    <text x="{LEFT - 22}" y="54" fill="{WHITE}" font-family="{SERIF}" font-size="28">{total_txt} contribuições no último ano</text>
+    {"".join(rotulos)}
+    {"".join(dias)}
+    {"".join(bolinha)}
   </g>
   <rect x="0.75" y="0.75" width="{W - 1.5}" height="{H - 1.5}" rx="17.5" fill="none" stroke="{LINE}" stroke-width="1.5"/>
 </svg>
