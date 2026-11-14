@@ -158,9 +158,9 @@ def astro(var):
 
 
 W_PITCH = 22      # distância entre os dias
-LEFT = 72         # início da grade, depois dos rótulos dos dias
-TOP = 120         # linha do domingo
-K = 0.78          # escala dos astros dentro da grade
+LEFT = 58         # início da grade, depois dos rótulos dos dias
+TOP = 124         # linha do domingo
+K = 1.0           # escala dos astros dentro da grade (podem passar um pouco da casa)
 PASSO_MAX = 0.06  # segundos que a bolinha leva, no máximo, de uma casa para a vizinha
 VARREDURA_MAX = 32  # duração máxima do passeio, em segundos
 PAUSA = 4         # segundos com tudo revelado antes de recomeçar
@@ -219,8 +219,8 @@ def caminho(weeks, rng):
 
 def svg(cal, login):
     weeks = cal["weeks"][-53:]
-    W = LEFT + (len(weeks) - 1) * W_PITCH + 56
-    H = TOP + 6 * W_PITCH + 46
+    W = LEFT + (len(weeks) - 1) * W_PITCH + 30
+    H = TOP + 6 * W_PITCH + 40
     rng = random.Random(login)
     passos, revela = caminho(weeks, rng)
     PASSO = min(PASSO_MAX, VARREDURA_MAX / len(passos))
@@ -244,7 +244,7 @@ def svg(cal, login):
                        f'font-family="{SANS}" font-size="12">{nome}</text>')
 
     trilha = [f"{LEFT + c * W_PITCH} {TOP + r * W_PITCH}" for c, r in passos]
-    dias = []
+    dias, numeros = [], []  # os números vão numa camada por cima, para nenhum astro vizinho cobri-los
     for c, week in enumerate(weeks):
         for day in week["contributionDays"]:
             x, y = LEFT + c * W_PITCH, TOP + day["weekday"] * W_PITCH
@@ -266,9 +266,11 @@ def svg(cal, login):
                 f'<circle cx="{x}" cy="{y}" r="{(raio + 3) * K:.1f}" fill="none" stroke="{WHITE}" stroke-width="1.4" opacity="0">'
                 f'<animate attributeName="opacity" {brilho} dur="{DUR:.2f}s" repeatCount="indefinite"/></circle>'
                 f'<g opacity="0"><animate attributeName="opacity" {surge} dur="{DUR:.2f}s" repeatCount="indefinite"/>'
-                f'<g transform="translate({x} {y}) scale({K})">{desenho}'
-                f'<text x="0" y="5" text-anchor="middle" fill="{ink}" font-family="{SANS}" '
-                f'font-size="{14.5 if n < 100 else 11}" font-weight="700">{n}</text></g></g>')
+                f'<g transform="translate({x} {y}) scale({K})">{desenho}</g></g>')
+            numeros.append(
+                f'<text x="{x}" y="{y + 5 * K:.1f}" text-anchor="middle" fill="{ink}" font-family="{SANS}" '
+                f'font-size="{(14.5 if n < 100 else 11) * K:.1f}" font-weight="700" opacity="0">{n}'
+                f'<animate attributeName="opacity" {surge} dur="{DUR:.2f}s" repeatCount="indefinite"/></text>')
 
     # bolinha que percorre a grade, com um rastro de pontos que vai sumindo
     ultimo = trilha[-1]
@@ -297,9 +299,10 @@ def svg(cal, login):
   <g clip-path="url(#card)">
     <rect width="{W}" height="{H}" fill="{BASE}"/>
     {fundo}
-    <text x="{LEFT - 22}" y="54" fill="{WHITE}" font-family="{SERIF}" font-size="28">{total_txt} contribuições no último ano</text>
+    <text x="{LEFT - 22}" y="56" fill="{WHITE}" font-family="{SERIF}" font-size="28">{total_txt} contribuições no último ano</text>
     {"".join(rotulos)}
     {"".join(dias)}
+    {"".join(numeros)}
     {"".join(bolinha)}
   </g>
   <rect x="0.75" y="0.75" width="{W - 1.5}" height="{H - 1.5}" rx="17.5" fill="none" stroke="{LINE}" stroke-width="1.5"/>
