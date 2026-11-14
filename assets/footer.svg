@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 260" width="1200" height="260" role="img" aria-labelledby="ft">
   <title id="ft">Até a próxima órbita.</title>
   <defs>
-    <linearGradient id="fbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a1d3d"/><stop offset="1" stop-color="#0d0f24"/></linearGradient>
+    <linearGradient id="fbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a0b10"/><stop offset="1" stop-color="#040406"/></linearGradient>
     <radialGradient id="glowF" cx="0.5" cy="0.95" r="0.6">
       <stop offset="0" stop-color="#899ec6" stop-opacity="0.35"/><stop offset="0.5" stop-color="#98b1d7" stop-opacity="0.12"/><stop offset="1" stop-color="#98b1d7" stop-opacity="0"/>
     </radialGradient>
-    <linearGradient id="wv1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#899ec6"/><stop offset="1" stop-color="#0d0f24"/></linearGradient>
-    <linearGradient id="wv2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a6686"/><stop offset="1" stop-color="#1a1d3d"/></linearGradient>
-    <linearGradient id="wv3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#262947"/><stop offset="0.6" stop-color="#1a1d3d"/><stop offset="1" stop-color="#0d0f24"/></linearGradient>
+    <linearGradient id="wv1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#899ec6"/><stop offset="1" stop-color="#040406"/></linearGradient>
+    <linearGradient id="wv2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a6686"/><stop offset="1" stop-color="#0a0b10"/></linearGradient>
+    <linearGradient id="wv3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#262947"/><stop offset="0.6" stop-color="#0a0b10"/><stop offset="1" stop-color="#040406"/></linearGradient>
     <linearGradient id="foot" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#98b1d7"/><stop offset="0.5" stop-color="#ffffff"/><stop offset="1" stop-color="#c3d0ea"/>
     </linearGradient>

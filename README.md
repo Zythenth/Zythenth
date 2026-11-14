@@ -10,11 +10,11 @@
 
 <div align="center">
 
-[![Texto animado sobre o trabalho de Zythenth](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=20&duration=2500&pause=850&color=C3D0EA&background=262947&center=true&vCenter=true&width=760&lines=%3E+criando+bots+que+lembram;%3E+construindo+mundos+que+reagem;%3E+transformando+regras+em+sistemas;%3E+refinando+at%C3%A9+ficar+do+jeito+certo)](https://git.io/typing-svg)
+[![Texto animado sobre o trabalho de Zythenth](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=20&duration=2500&pause=850&color=C3D0EA&background=08090D&center=true&vCenter=true&width=760&lines=Bots+com+mem%C3%B3ria.+Mundos+com+consequ%C3%AAncia.;Se+tem+regra%2C+d%C3%A1+pra+virar+sistema.;Uma+ideia+solta+hoje%2C+um+projeto+amanh%C3%A3.;Refazendo+at%C3%A9+parar+de+me+incomodar.)](https://git.io/typing-svg)
 
 [![Visualizações do perfil](https://komarev.com/ghpvc/?username=Zythenth&label=VISITAS&style=flat-square&color=8a9fc6)](https://github.com/Zythenth)
-[![Seguidores no GitHub](https://img.shields.io/github/followers/Zythenth?label=SEGUIDORES&style=flat-square&logo=github&labelColor=262947&color=c3d0ea)](https://github.com/Zythenth?tab=followers)
-[![GitHub desde 2025](https://img.shields.io/badge/CONTA-2025-b8566a?style=flat-square&logo=github&labelColor=262947)](https://github.com/Zythenth)
+[![Seguidores no GitHub](https://img.shields.io/github/followers/Zythenth?label=SEGUIDORES&style=flat-square&logo=github&labelColor=08090d&color=c3d0ea)](https://github.com/Zythenth?tab=followers)
+[![GitHub desde 2025](https://img.shields.io/badge/CONTA-2025-b8566a?style=flat-square&logo=github&labelColor=08090d)](https://github.com/Zythenth)
 
 </div>
 
@@ -78,12 +78,12 @@ Quando não estou tentando fazer algo novo, provavelmente estou refazendo alguma
 <img width="100%" src="./assets/sections/github.svg" alt="Um pouco do meu GitHub">
 
 <p align="center">
-  <img height="180" src="https://github-readme-stats.shion.dev/api?username=Zythenth&show_icons=true&hide_border=true&include_all_commits=true&bg_color=262947&title_color=f9f9fd&text_color=c3d0ea&icon_color=8a9fc6" alt="Estatísticas do GitHub de Zythenth">
-  <img height="180" src="https://github-readme-stats.shion.dev/api/top-langs/?username=Zythenth&layout=compact&langs_count=6&hide_border=true&bg_color=262947&title_color=f9f9fd&text_color=c3d0ea" alt="Linguagens mais usadas por Zythenth">
+  <img height="180" src="https://github-readme-stats.shion.dev/api?username=Zythenth&show_icons=true&hide_border=true&include_all_commits=true&bg_color=08090d&title_color=f9f9fd&text_color=c3d0ea&icon_color=8a9fc6" alt="Estatísticas do GitHub de Zythenth">
+  <img height="180" src="https://github-readme-stats.shion.dev/api/top-langs/?username=Zythenth&layout=compact&langs_count=6&hide_border=true&bg_color=08090d&title_color=f9f9fd&text_color=c3d0ea" alt="Linguagens mais usadas por Zythenth">
 </p>
 
 <p align="center">
-  <img width="100%" src="https://raw.githubusercontent.com/Zythenth/Zythenth/output/snake.svg" alt="Animação de uma cobrinha percorrendo o gráfico de contribuições de Zythenth">
+  <img width="100%" src="https://raw.githubusercontent.com/Zythenth/Zythenth/output/constelacao.svg" alt="Constelação de contribuições de Zythenth: cada dia é um cometa, planeta, sol, estrela gigante ou buraco negro, conforme o número de contribuições">
 </p>
 
 <br>
@@ -94,10 +94,10 @@ Quando não estou tentando fazer algo novo, provavelmente estou refazendo alguma
 
 <p align="center">
   <a href="https://discord.com/users/936660871562805330">
-    <img src="https://img.shields.io/badge/Discord-zy-262947?style=for-the-badge&logo=discord&logoColor=c3d0ea" alt="Perfil de zy no Discord">
+    <img src="https://img.shields.io/badge/Discord-zy-08090d?style=for-the-badge&logo=discord&logoColor=c3d0ea" alt="Perfil de zy no Discord">
   </a>
   <a href="https://github.com/Zythenth?tab=repositories">
-    <img src="https://img.shields.io/badge/Reposit%C3%B3rios-Zythenth-262947?style=for-the-badge&logo=github&logoColor=e9eaf3" alt="Repositórios de Zythenth no GitHub">
+    <img src="https://img.shields.io/badge/Reposit%C3%B3rios-Zythenth-08090d?style=for-the-badge&logo=github&logoColor=e9eaf3" alt="Repositórios de Zythenth no GitHub">
   </a>
 </p>
 
