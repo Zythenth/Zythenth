@@ -102,24 +102,45 @@ PAUSA = 4         # segundos com tudo revelado antes de recomeçar
 NORMAL = {"cometa": "#2e3754", "planeta": "#4a5a86", "sol": "#7187bb", "gigante": "#a9bde6", "buraco": "#d6e0f5"}
 
 
-def caminho(weeks):
-    """Ordem em zigue-zague: desce numa semana, sobe na seguinte, como a cobrinha."""
-    pontos = []
-    for c, week in enumerate(weeks):
-        dias = sorted(week["contributionDays"], key=lambda d: d["weekday"], reverse=c % 2 == 1)
-        pontos += [(c, d) for d in dias]
-    return pontos
+def caminho(weeks, rng):
+    """Trajeto orgânico como o da cobrinha: anda uma casa por vez nas quatro direções,
+    sempre rumo ao dia com contribuições ainda não revelado mais próximo, em escadinha.
+
+    Devolve a lista de casas visitadas e, para cada dia com contribuições, o passo em que
+    a bolinha passou por cima dele pela primeira vez.
+    """
+    alvos = {(c, d["weekday"]) for c, w in enumerate(weeks) for d in w["contributionDays"] if d["contributionCount"]}
+    pos, passos, revela = (-1, 3), [(-1, 3)], {}
+    while alvos:
+        alvo = min(alvos, key=lambda q: (abs(q[0] - pos[0]) + abs(q[1] - pos[1]), rng.random()))
+        while pos != alvo:
+            opcoes = []
+            if alvo[0] != pos[0]:
+                opcoes.append((pos[0] + (1 if alvo[0] > pos[0] else -1), pos[1]))
+            if alvo[1] != pos[1]:
+                opcoes.append((pos[0], pos[1] + (1 if alvo[1] > pos[1] else -1)))
+            pos = rng.choice(opcoes)
+            passos.append(pos)
+            if pos in alvos:
+                alvos.discard(pos)
+                revela[pos] = len(passos) - 1
+    fim = (pos[0], 3)
+    while pos != fim:  # volta para o meio e sai pela direita
+        pos = (pos[0], pos[1] + (1 if fim[1] > pos[1] else -1))
+        passos.append(pos)
+    passos += [(pos[0] + i, pos[1]) for i in range(1, len(weeks) - pos[0] + 2)]
+    return passos, revela
 
 
 def svg(cal, login):
     weeks = cal["weeks"][-53:]
     W = LEFT + (len(weeks) - 1) * W_PITCH + 56
     H = TOP + 6 * W_PITCH + 46
-    pontos = caminho(weeks)
-    varredura = len(pontos) * PASSO
+    rng = random.Random(login)
+    passos, revela = caminho(weeks, rng)
+    varredura = len(passos) * PASSO
     DUR = varredura + PAUSA + 1.2
     r1, r2 = (varredura + PAUSA) / DUR, (varredura + PAUSA + 0.8) / DUR
-    rng = random.Random(login)
 
     fundo = "".join(
         f'<circle cx="{rng.uniform(10, W - 10):.0f}" cy="{rng.uniform(10, H - 10):.0f}" '
@@ -136,30 +157,31 @@ def svg(cal, login):
         rotulos.append(f'<text x="{LEFT - 22}" y="{TOP + i * W_PITCH + 4.5}" text-anchor="end" fill="{PERI}" '
                        f'font-family="{SANS}" font-size="12">{nome}</text>')
 
-    dias, trilha = [], []
-    for i, (c, day) in enumerate(pontos):
-        x, y = LEFT + c * W_PITCH, TOP + day["weekday"] * W_PITCH
-        trilha.append(f"{x} {y}")
-        n = day["contributionCount"]
-        if n == 0:
-            dias.append(f'<circle cx="{x}" cy="{y}" r="1.7" fill="{DIM}" opacity="0.5"/>')
-            continue
-        tipo = faixa(n)[1]
-        f = i * PASSO / DUR
-        a = f + 0.002
-        some = f'values="1;1;0;0;1;1" keyTimes="0;{f:.4f};{a:.4f};{r1:.4f};{r2:.4f};1"'
-        surge = f'values="0;0;1;1;0;0" keyTimes="0;{f:.4f};{a:.4f};{r1:.4f};{r2:.4f};1"'
-        brilho = f'values="0;0;1;0;0" keyTimes="0;{f:.4f};{a:.4f};{min(f + 1.2 / DUR, r1):.4f};1"'
-        desenho, ink, raio = astro(tipo, 0, 0)
-        dias.append(
-            f'<rect x="{x - 6}" y="{y - 6}" width="12" height="12" rx="3" fill="{NORMAL[tipo]}">'
-            f'<animate attributeName="opacity" {some} dur="{DUR:.2f}s" repeatCount="indefinite"/></rect>'
-            f'<circle cx="{x}" cy="{y}" r="{(raio + 3) * K:.1f}" fill="none" stroke="{WHITE}" stroke-width="1.4" opacity="0">'
-            f'<animate attributeName="opacity" {brilho} dur="{DUR:.2f}s" repeatCount="indefinite"/></circle>'
-            f'<g opacity="0"><animate attributeName="opacity" {surge} dur="{DUR:.2f}s" repeatCount="indefinite"/>'
-            f'<g transform="translate({x} {y}) scale({K})">{desenho}'
-            f'<text x="0" y="5" text-anchor="middle" fill="{ink}" font-family="{SANS}" '
-            f'font-size="{14.5 if n < 100 else 11}" font-weight="700">{n}</text></g></g>')
+    trilha = [f"{LEFT + c * W_PITCH} {TOP + r * W_PITCH}" for c, r in passos]
+    dias = []
+    for c, week in enumerate(weeks):
+        for day in week["contributionDays"]:
+            x, y = LEFT + c * W_PITCH, TOP + day["weekday"] * W_PITCH
+            n = day["contributionCount"]
+            if n == 0:
+                dias.append(f'<circle cx="{x}" cy="{y}" r="1.7" fill="{DIM}" opacity="0.5"/>')
+                continue
+            tipo = faixa(n)[1]
+            f = revela[(c, day["weekday"])] * PASSO / DUR
+            a = f + 0.002
+            some = f'values="1;1;0;0;1;1" keyTimes="0;{f:.4f};{a:.4f};{r1:.4f};{r2:.4f};1"'
+            surge = f'values="0;0;1;1;0;0" keyTimes="0;{f:.4f};{a:.4f};{r1:.4f};{r2:.4f};1"'
+            brilho = f'values="0;0;1;0;0" keyTimes="0;{f:.4f};{a:.4f};{min(f + 1.2 / DUR, r1):.4f};1"'
+            desenho, ink, raio = astro(tipo, 0, 0)
+            dias.append(
+                f'<rect x="{x - 6}" y="{y - 6}" width="12" height="12" rx="3" fill="{NORMAL[tipo]}">'
+                f'<animate attributeName="opacity" {some} dur="{DUR:.2f}s" repeatCount="indefinite"/></rect>'
+                f'<circle cx="{x}" cy="{y}" r="{(raio + 3) * K:.1f}" fill="none" stroke="{WHITE}" stroke-width="1.4" opacity="0">'
+                f'<animate attributeName="opacity" {brilho} dur="{DUR:.2f}s" repeatCount="indefinite"/></circle>'
+                f'<g opacity="0"><animate attributeName="opacity" {surge} dur="{DUR:.2f}s" repeatCount="indefinite"/>'
+                f'<g transform="translate({x} {y}) scale({K})">{desenho}'
+                f'<text x="0" y="5" text-anchor="middle" fill="{ink}" font-family="{SANS}" '
+                f'font-size="{14.5 if n < 100 else 11}" font-weight="700">{n}</text></g></g>')
 
     # bolinha que percorre a grade, com um rastro de pontos que vai sumindo
     ultimo = trilha[-1]
