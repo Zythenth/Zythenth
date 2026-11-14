@@ -10,7 +10,7 @@
 
 <div align="center">
 
-[![Texto animado sobre o trabalho de Zythenth](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=20&duration=2500&pause=850&color=C3D0EA&background=08090D&center=true&vCenter=true&width=760&lines=Bots+com+mem%C3%B3ria.+Mundos+com+consequ%C3%AAncia.;Se+tem+regra%2C+d%C3%A1+pra+virar+sistema.;Uma+ideia+solta+hoje%2C+um+projeto+amanh%C3%A3.;Refazendo+at%C3%A9+parar+de+me+incomodar.)](https://git.io/typing-svg)
+[![Texto animado com frases inspiradas em vilões](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=20&duration=2500&pause=850&color=C3D0EA&background=08090D&center=true&vCenter=true&width=760&lines=Eu+sou+inevit%C3%A1vel.+Meus+commits+tamb%C3%A9m.;Por+que+t%C3%A3o+s%C3%A9rio%3F+%C3%89+s%C3%B3+produ%C3%A7%C3%A3o.;Eu+n%C3%A3o+corro+perigo.+Eu+sou+o+deploy+de+sexta.;Escrevo+o+nome+do+bug.+Em+40+segundos%2C+ele+some.;Que+o+mundo+conhe%C3%A7a+a+dor+do+c%C3%B3digo+legado.)](https://git.io/typing-svg)
 
 [![Visualizações do perfil](https://komarev.com/ghpvc/?username=Zythenth&label=VISITAS&style=flat-square&color=8a9fc6)](https://github.com/Zythenth)
 [![Seguidores no GitHub](https://img.shields.io/github/followers/Zythenth?label=SEGUIDORES&style=flat-square&logo=github&labelColor=08090d&color=c3d0ea)](https://github.com/Zythenth?tab=followers)
