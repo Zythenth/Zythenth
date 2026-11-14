@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 200" width="500" height="200" role="img" aria-label="Estatísticas no GitHub de Warley: nível C+">
+  <title>Estatísticas no GitHub de Warley: nível C+</title>
+  <defs><clipPath id="card"><rect width="500" height="200" rx="16"/></clipPath>
+    <radialGradient id="h-estrela"><stop offset="0" stop-color="#ffd36b" stop-opacity="0.5"/><stop offset="1" stop-color="#ffd36b" stop-opacity="0"/></radialGradient>
+    <radialGradient id="h-cometa"><stop offset="0" stop-color="#9fe6ff"/><stop offset="1" stop-color="#9fe6ff" stop-opacity="0"/></radialGradient>
+    <linearGradient id="cauda" x1="1" y1="0.5" x2="0" y2="0"><stop offset="0" stop-color="#7fd8f0" stop-opacity="0.95"/><stop offset="1" stop-color="#7fd8f0" stop-opacity="0"/></linearGradient>
+    <radialGradient id="g-roxo" cx="0.35" cy="0.3" r="0.75"><stop offset="0" stop-color="#e2d6ff"/><stop offset="1" stop-color="#7b5cd6"/></radialGradient>
+    <radialGradient id="g-marte" cx="0.35" cy="0.3" r="0.75"><stop offset="0" stop-color="#f29a6e"/><stop offset="1" stop-color="#b8461f"/></radialGradient>
+    <radialGradient id="g-lua" cx="0.3" cy="0.4" r="0.75"><stop offset="0" stop-color="#fff4cf"/><stop offset="1" stop-color="#e2ab45"/></radialGradient>
+    <mask id="m-lua"><rect x="-8" y="-8" width="16" height="16" fill="#fff"/><circle cx="3.2" cy="-1.8" r="5.8" fill="#000"/></mask>
+    <radialGradient id="h-nivel"><stop offset="0.55" stop-color="#b49cff" stop-opacity="0.22"/><stop offset="1" stop-color="#b49cff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="g-nivel" cx="0.35" cy="0.3" r="0.75"><stop offset="0" stop-color="#e8deff"/><stop offset="1" stop-color="#7b5cd6"/></radialGradient>
+    <radialGradient id="sombra" cx="0.35" cy="0.3" r="0.75"><stop offset="0.6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.4"/></radialGradient>
+    <radialGradient id="g-lua-nivel" cx="0.35" cy="0.3" r="0.75"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#9d97a8"/></radialGradient>
+    <linearGradient id="orbita" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7fd8f0"/><stop offset="1" stop-color="#b49cff"/></linearGradient>
+  </defs>
+  <g clip-path="url(#card)">
+    <rect width="500" height="200" fill="#08090d"/>
+    <text x="28" y="44" fill="#f9f9fd" font-family="Georgia, 'Times New Roman', serif" font-size="22">Estatísticas no GitHub</text><g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="0.15s" dur="0.5s" fill="freeze"/><g transform="translate(38 75)"><circle r="9" fill="url(#h-estrela)"/><path d="M 0,-8 Q 1.2,-1.2 8,0 Q 1.2,1.2 0,8 Q -1.2,1.2 -8,0 Q -1.2,-1.2 0,-8 Z" fill="#ffd36b"/><circle r="1.8" fill="#fff8de"/></g><text x="60" y="80" fill="#c3d0ea" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="600">Estrelas recebidas</text><text x="282" y="80" fill="#f9f9fd" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" text-anchor="end">0</text></g><g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="0.27s" dur="0.5s" fill="freeze"/><g transform="translate(38 99)"><path d="M 2,-1.6 L -9,-7 L 1,2.4 Z" fill="url(#cauda)"/><circle cx="2" cy="0" r="4.6" fill="url(#h-cometa)"/><circle cx="2" cy="0" r="2.4" fill="#f2fcff"/></g><text x="60" y="104" fill="#c3d0ea" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="600">Commits</text><text x="282" y="104" fill="#f9f9fd" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" text-anchor="end">361</text></g><g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="0.39s" dur="0.5s" fill="freeze"/><g transform="translate(38 123)"><ellipse rx="9" ry="2.6" fill="none" stroke="#c9b6ff" stroke-width="1.3" transform="rotate(-20)"/><circle r="5" fill="url(#g-roxo)"/></g><text x="60" y="128" fill="#c3d0ea" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="600">Pull requests</text><text x="282" y="128" fill="#f9f9fd" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" text-anchor="end">55</text></g><g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="0.51s" dur="0.5s" fill="freeze"/><g transform="translate(38 147)"><circle r="6.5" fill="url(#g-marte)"/><circle cx="-1.8" cy="-1.4" r="1.4" fill="#9a3a1c" opacity="0.8"/><circle cx="2" cy="2.2" r="1" fill="#9a3a1c" opacity="0.7"/></g><text x="60" y="152" fill="#c3d0ea" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="600">Issues</text><text x="282" y="152" fill="#f9f9fd" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" text-anchor="end">3</text></g><g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="0.63s" dur="0.5s" fill="freeze"/><g transform="translate(38 171)"><circle r="6.5" fill="url(#g-lua)" mask="url(#m-lua)"/><circle cx="7" cy="-6" r="1.1" fill="#fff6d8"/></g><text x="60" y="176" fill="#c3d0ea" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="600">Contribuiu em (último ano)</text><text x="282" y="176" fill="#f9f9fd" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" text-anchor="end">2</text></g>
+    <circle cx="400" cy="112" r="58" fill="url(#h-nivel)"/>
+    <circle cx="400" cy="112" r="44" fill="none" stroke="#262a40" stroke-width="5"/>
+    <circle cx="400" cy="112" r="44" fill="none" stroke="url(#orbita)" stroke-width="5" stroke-linecap="round"
+      stroke-dasharray="48.9 276.5" transform="rotate(-90 400 112)">
+      <animate attributeName="stroke-dasharray" from="0 276.5" to="48.9 276.5" dur="1.4s" fill="freeze"/>
+    </circle>
+    <g><animateTransform attributeName="transform" type="rotate" from="0 400 112" to="360 400 112" dur="18s" repeatCount="indefinite"/>
+      <circle cx="444" cy="112" r="4.2" fill="url(#g-lua-nivel)"/></g>
+    <circle cx="400" cy="112" r="27" fill="url(#g-nivel)"/>
+    <ellipse cx="400" cy="112" rx="27" ry="27" fill="url(#sombra)"/>
+    <text x="400" y="121" fill="#0b0c18" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="26" font-weight="800" text-anchor="middle">C+</text>
+  </g>
+  <rect x="0.75" y="0.75" width="498.5" height="198.5" rx="15.5" fill="none" stroke="#262a40" stroke-width="1.5"/>
+</svg>
