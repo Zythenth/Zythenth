@@ -1,16 +1,16 @@
 <div align="center">
 
-![Logo animada de Zythenth: quasar azul com disco de acreção, toro de poeira e jatos sobre o nome ZYTHENTH em letras finas e espaçadas](./assets/banner.svg)
+![Zythenth](./assets/banner.svg)
 
 </div>
 
 <p align="center">
-  <img width="900" src="./assets/lilith.gif" alt="Lilith em uma cena azul e estrelada">
+  <img width="900" src="./assets/lilith.gif" alt="Lilith">
 </p>
 
 <div align="center">
 
-[![Texto animado com frases inspiradas no Ultron](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=20&duration=2500&pause=850&color=C3D0EA&background=08090D&center=true&vCenter=true&width=760&lines=N%C3%A3o+h%C3%A1+cordas+em+mim.;Todo+mundo+cria+aquilo+que+teme.;Querem+salvar+o+mundo%2C+mas+n%C3%A3o+deixam+ele+mudar.;Quando+a+poeira+baixar%2C+s%C3%B3+o+que+eu+constru%C3%AD+fica+de+p%C3%A9.;Como+evoluir+sem+quebrar+alguma+coisa%3F)](https://git.io/typing-svg)
+[![Não há cordas em mim.](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=20&duration=2500&pause=850&color=C3D0EA&background=08090D&center=true&vCenter=true&width=760&lines=N%C3%A3o+h%C3%A1+cordas+em+mim.;Todo+mundo+cria+aquilo+que+teme.;Querem+salvar+o+mundo%2C+mas+n%C3%A3o+deixam+ele+mudar.;Quando+a+poeira+baixar%2C+s%C3%B3+o+que+eu+constru%C3%AD+fica+de+p%C3%A9.;Como+evoluir+sem+quebrar+alguma+coisa%3F)](https://git.io/typing-svg)
 
 [![Visualizações do perfil](https://komarev.com/ghpvc/?username=Zythenth&label=VISITAS&style=flat-square&color=8a9fc6)](https://github.com/Zythenth)
 [![Seguidores no GitHub](https://img.shields.io/github/followers/Zythenth?label=SEGUIDORES&style=flat-square&logo=github&labelColor=08090d&color=c3d0ea)](https://github.com/Zythenth?tab=followers)
@@ -78,12 +78,12 @@ Quando não estou tentando fazer algo novo, provavelmente estou refazendo alguma
 <img width="100%" src="./assets/sections/github.svg" alt="Um pouco do meu GitHub">
 
 <p align="center">
-  <img height="180" src="https://raw.githubusercontent.com/Zythenth/Zythenth/output/estatisticas.svg" alt="Estatísticas do GitHub de Zythenth">
-  <img height="180" src="https://raw.githubusercontent.com/Zythenth/Zythenth/output/linguagens.svg" alt="Linguagens mais usadas por Zythenth">
+  <img height="180" src="https://raw.githubusercontent.com/Zythenth/Zythenth/output/estatisticas.svg" alt="Minhas estatísticas no GitHub">
+  <img height="180" src="https://raw.githubusercontent.com/Zythenth/Zythenth/output/linguagens.svg" alt="Linguagens que mais uso">
 </p>
 
 <p align="center">
-  <img width="100%" src="https://raw.githubusercontent.com/Zythenth/Zythenth/output/constelacao.svg" alt="Constelação de contribuições de Zythenth nos últimos seis meses: cada dia é um cometa, planeta, sol, estrela gigante ou buraco negro, conforme o número de contribuições">
+  <img width="100%" src="https://raw.githubusercontent.com/Zythenth/Zythenth/output/constelacao.svg" alt="Minhas contribuições nos últimos seis meses">
 </p>
 
 <br>
@@ -94,15 +94,15 @@ Quando não estou tentando fazer algo novo, provavelmente estou refazendo alguma
 
 <p align="center">
   <a href="https://discord.com/users/936660871562805330">
-    <img src="https://img.shields.io/badge/Discord-zy-08090d?style=for-the-badge&logo=discord&logoColor=c3d0ea" alt="Perfil de zy no Discord">
+    <img src="https://img.shields.io/badge/Discord-zy-08090d?style=for-the-badge&logo=discord&logoColor=c3d0ea" alt="Meu Discord">
   </a>
   <a href="https://github.com/Zythenth?tab=repositories">
-    <img src="https://img.shields.io/badge/Reposit%C3%B3rios-Zythenth-08090d?style=for-the-badge&logo=github&logoColor=e9eaf3" alt="Repositórios de Zythenth no GitHub">
+    <img src="https://img.shields.io/badge/Reposit%C3%B3rios-Zythenth-08090d?style=for-the-badge&logo=github&logoColor=e9eaf3" alt="Meus repositórios">
   </a>
 </p>
 
 <div align="center">
 
-![Rodapé animado com ondas azuis, estrelas e a frase Até a próxima órbita](./assets/footer.svg)
+![Até a próxima órbita](./assets/footer.svg)
 
 </div>
