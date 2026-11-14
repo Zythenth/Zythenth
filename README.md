@@ -1,6 +1,6 @@
 <div align="center">
 
-![Logo animada de Zythenth: quasar azul com disco de acreção, toro de poeira e jatos sobre o nome Zythenth](./assets/banner.svg)
+![Logo animada de Zythenth: quasar azul com disco de acreção, toro de poeira e jatos sobre o nome ZYTHENTH em letras finas e espaçadas](./assets/banner.svg)
 
 </div>
 
