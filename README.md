@@ -83,7 +83,7 @@ Quando não estou tentando fazer algo novo, provavelmente estou refazendo alguma
 </p>
 
 <p align="center">
-  <img width="100%" src="https://raw.githubusercontent.com/Zythenth/Zythenth/output/constelacao.svg" alt="Constelação de contribuições de Zythenth: cada dia é um cometa, planeta, sol, estrela gigante ou buraco negro, conforme o número de contribuições">
+  <img width="100%" src="https://raw.githubusercontent.com/Zythenth/Zythenth/output/constelacao.svg" alt="Constelação de contribuições de Zythenth nos últimos seis meses: cada dia é um cometa, planeta, sol, estrela gigante ou buraco negro, conforme o número de contribuições">
 </p>
 
 <br>

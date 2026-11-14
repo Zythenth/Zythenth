@@ -1,6 +1,6 @@
 """Gera a constelação de contribuições do perfil em SVG.
 
-Cada dia do último ano aparece como um commit comum até a bolinha passar por
+Cada dia dos últimos seis meses aparece como um commit comum até a bolinha passar por
 cima, num trajeto livre como o da cobrinha; aí ele vira um astro que cresce com as
 contribuições (cometa, planeta, sol, estrela gigante ou buraco negro) e mostra
 o número do dia.
@@ -157,6 +157,7 @@ def astro(var):
             '<circle r="10.5" fill="#05060f" stroke="#ffd9a0" stroke-width="1.4"/>', WHITE, 19)
 
 
+SEMANAS = 26       # semanas mostradas: seis meses, para os astros aparecerem grandes
 W_PITCH = 22      # distância entre os dias
 LEFT = 58         # início da grade, depois dos rótulos dos dias
 TOP = 124         # linha do domingo
@@ -218,7 +219,7 @@ def caminho(weeks, rng):
 
 
 def svg(cal, login):
-    weeks = cal["weeks"][-53:]
+    weeks = cal["weeks"][-SEMANAS:]
     W = LEFT + (len(weeks) - 1) * W_PITCH + 30
     H = TOP + 6 * W_PITCH + 40
     rng = random.Random(login)
@@ -287,9 +288,9 @@ def svg(cal, login):
             f'<g transform="translate({trilha[0]})"><animateTransform attributeName="transform" type="translate" '
             f'values="{valores}" keyTimes="{tempos}" dur="{DUR:.2f}s" {atraso} repeatCount="indefinite"/>{corpo}</g></g>')
 
-    total = cal["totalContributions"]
+    total = sum(d["contributionCount"] for w in weeks for d in w["contributionDays"])
     total_txt = f"{total:,}".replace(",", ".")
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Constelação de contribuições de {login}: {total_txt} contribuições no último ano">
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="Constelação de contribuições de {login}: {total_txt} contribuições nos últimos seis meses">
   <title>Constelação de contribuições de {login}</title>
   <defs>
     <clipPath id="card"><rect width="{W}" height="{H}" rx="18"/></clipPath>
@@ -299,7 +300,7 @@ def svg(cal, login):
   <g clip-path="url(#card)">
     <rect width="{W}" height="{H}" fill="{BASE}"/>
     {fundo}
-    <text x="{LEFT - 22}" y="56" fill="{WHITE}" font-family="{SERIF}" font-size="28">{total_txt} contribuições no último ano</text>
+    <text x="{LEFT - 22}" y="54" fill="{WHITE}" font-family="{SERIF}" font-size="21">{total_txt} contribuições nos últimos seis meses</text>
     {"".join(rotulos)}
     {"".join(dias)}
     {"".join(numeros)}
