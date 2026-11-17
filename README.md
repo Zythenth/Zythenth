@@ -70,10 +70,6 @@ Quando não estou tentando fazer algo novo, provavelmente estou refazendo alguma
   <img height="180" src="https://raw.githubusercontent.com/Zythenth/Zythenth/output/linguagens.svg" alt="Linguagens que mais uso">
 </p>
 
-<p align="center">
-  <img width="100%" src="https://raw.githubusercontent.com/Zythenth/Zythenth/output/constelacao.svg" alt="Minhas contribuições nos últimos seis meses">
-</p>
-
 <br>
 
 <img width="100%" src="./assets/sections/contato.svg" alt="Onde me encontrar">
