@@ -245,7 +245,7 @@ def svg(cal, login):
                        f'font-family="{SANS}" font-size="12">{nome}</text>')
 
     trilha = [f"{LEFT + c * W_PITCH} {TOP + r * W_PITCH}" for c, r in passos]
-    dias, numeros = [], []  # os números vão numa camada por cima, para nenhum astro vizinho cobri-los
+    dias = []
     for c, week in enumerate(weeks):
         for day in week["contributionDays"]:
             x, y = LEFT + c * W_PITCH, TOP + day["weekday"] * W_PITCH
@@ -260,7 +260,7 @@ def svg(cal, login):
             surge = f'values="0;0;1;1;0;0" keyTimes="0;{f:.4f};{a:.4f};{r1:.4f};{r2:.4f};1"'
             brilho = f'values="0;0;1;0;0" keyTimes="0;{f:.4f};{a:.4f};{min(f + 1.2 / DUR, r1):.4f};1"'
             opcoes = VARIANTES[tipo]
-            desenho, ink, raio = astro(opcoes[zlib.crc32(day["date"].encode()) % len(opcoes)])
+            desenho, _, raio = astro(opcoes[zlib.crc32(day["date"].encode()) % len(opcoes)])
             dias.append(
                 f'<rect x="{x - 6}" y="{y - 6}" width="12" height="12" rx="3" fill="{NORMAL[tipo]}">'
                 f'<animate attributeName="opacity" {some} dur="{DUR:.2f}s" repeatCount="indefinite"/></rect>'
@@ -268,10 +268,6 @@ def svg(cal, login):
                 f'<animate attributeName="opacity" {brilho} dur="{DUR:.2f}s" repeatCount="indefinite"/></circle>'
                 f'<g opacity="0"><animate attributeName="opacity" {surge} dur="{DUR:.2f}s" repeatCount="indefinite"/>'
                 f'<g transform="translate({x} {y}) scale({K})">{desenho}</g></g>')
-            numeros.append(
-                f'<text x="{x}" y="{y + 5 * K:.1f}" text-anchor="middle" fill="{ink}" font-family="{SANS}" '
-                f'font-size="{(14.5 if n < 100 else 11) * K:.1f}" font-weight="700" opacity="0">{n}'
-                f'<animate attributeName="opacity" {surge} dur="{DUR:.2f}s" repeatCount="indefinite"/></text>')
 
     # bolinha que percorre a grade, com um rastro de pontos que vai sumindo
     ultimo = trilha[-1]
@@ -303,7 +299,6 @@ def svg(cal, login):
     <text x="{LEFT - 22}" y="54" fill="{WHITE}" font-family="{SERIF}" font-size="21">{total_txt} contribuições nos últimos seis meses</text>
     {"".join(rotulos)}
     {"".join(dias)}
-    {"".join(numeros)}
     {"".join(bolinha)}
   </g>
   <rect x="0.75" y="0.75" width="{W - 1.5}" height="{H - 1.5}" rx="17.5" fill="none" stroke="{LINE}" stroke-width="1.5"/>
