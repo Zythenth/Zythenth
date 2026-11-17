@@ -12,10 +12,6 @@
 
 [![Não há cordas em mim.](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=20&duration=2500&pause=850&color=C3D0EA&background=08090D&center=true&vCenter=true&width=760&lines=N%C3%A3o+h%C3%A1+cordas+em+mim.;Todo+mundo+cria+aquilo+que+teme.;Querem+salvar+o+mundo%2C+mas+n%C3%A3o+deixam+ele+mudar.;Quando+a+poeira+baixar%2C+s%C3%B3+o+que+eu+constru%C3%AD+fica+de+p%C3%A9.;Como+evoluir+sem+quebrar+alguma+coisa%3F)](https://git.io/typing-svg)
 
-[![Visualizações do perfil](https://komarev.com/ghpvc/?username=Zythenth&label=VISITAS&style=flat-square&color=8a9fc6)](https://github.com/Zythenth)
-[![Seguidores no GitHub](https://img.shields.io/github/followers/Zythenth?label=SEGUIDORES&style=flat-square&logo=github&labelColor=08090d&color=c3d0ea)](https://github.com/Zythenth?tab=followers)
-[![GitHub desde 2025](https://img.shields.io/badge/CONTA-2025-b8566a?style=flat-square&logo=github&labelColor=08090d)](https://github.com/Zythenth)
-
 </div>
 
 <br>
@@ -29,8 +25,6 @@ Gosto de pegar uma ideia solta e descobrir até onde ela pode ir. Às vezes ela 
 Programo principalmente com Python e TypeScript. Também gosto muito de RPG, sistemas cheios de regras e projetos que misturam código com IA sem entregar toda a lógica para o modelo.
 
 Quando não estou tentando fazer algo novo, provavelmente estou refazendo alguma parte até ela ficar do jeito que imaginei.
-
-> **Agora:** Black Gravity · **Linguagens:** Python e TypeScript · **Gosto de:** RPG e sistemas cheios de regras
 
 <br>
 
@@ -51,10 +45,6 @@ Quando não estou tentando fazer algo novo, provavelmente estou refazendo alguma
   </a>
 </p>
 
-<br>
-
-<img width="100%" src="./assets/sections/trabalhando.svg" alt="No que tenho trabalhado">
-
 **[Black Gravity](https://github.com/Zythenth/black-gravity)** é um servidor MCP local que delega tarefas de programação ao Google Antigravity pelo CLI oficial `agy`. Cada tarefa roda numa cópia isolada do projeto e só chega ao código original depois de verificada e revisada. É feito com TypeScript e Node.js.
 
 **[Aurora](https://github.com/Zythenth/aurora-discord-bot)** nasceu da minha vontade de criar algo especial e de um impulso que veio do amor da minha vida. O que começou como uma ideia simples foi crescendo até se tornar um bot com roleplay, afinidade, privacidade, moderação e integração com GIFs. Ele é feito com TypeScript, Discord.js, Prisma e SQLite.
@@ -70,8 +60,6 @@ Quando não estou tentando fazer algo novo, provavelmente estou refazendo alguma
 <p align="center">
   <img src="https://skillicons.dev/icons?i=python,ts,nodejs,flask,sqlite,docker,git,github&theme=dark" alt="Python, TypeScript, Node.js, Flask, SQLite, Docker, Git e GitHub">
 </p>
-
-<p align="center">Além dessas ferramentas, trabalho com Discord.js, Prisma, APIs REST, MCP, testes automatizados e integração com modelos de linguagem.</p>
 
 <br>
 
